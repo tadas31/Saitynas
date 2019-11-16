@@ -1,0 +1,31 @@
+<div  class="container content" *ngIf="isAdmin;else not_admin">
+
+  <table class="table" id="users">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Is admin</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let user of users">
+
+      <tr onMouseOver="this.style.backgroundColor='#D0D0D0';"
+        onMouseOut="this.style.backgroundColor='#ffffff';">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ (user.is_admin == 1) ? "true": "false" }}</td>
+        <td> <a *ngIf="user.is_admin == 0" (click)="makeAdmin(user.id)" style="color: white; cursor: pointer;" class="btn btn-primary round">Make Admin</a> </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<ng-template #not_admin>
+  <div class="container content">
+    <h1>you need to be loged in as admin</h1>
+  </div>
+</ng-template>

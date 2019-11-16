@@ -1,0 +1,108 @@
+<div  class="animate-bottom container content" *ngIf="psu.type == 'psu';else loading">
+
+
+    <h1>
+        <br clear="right">
+        <img src="{{ computer.image_url }}" class="img-fluid mb-4"
+              onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+              align="left" width="400" height="300" style="margin-bottom: 20px; background-size: cover;">
+
+        <div style=" margin-left: 420px;">
+            Name: {{ computer.name }} <br>
+            <div >
+                <a *ngIf="userId == computer.user_id" routerLink="/editcomputer/{{ computer.id }}" class="btn btn-primary round" style="width: 100px">Edit</a> &nbsp;
+                <ngbd-modal-delete *ngIf="userId == computer.user_id || isAdmin" class="btn btn-warning round" style="cursor: pointer;" itemToDelete="{{ computer.name }}" (deleteResponce)="onDelete(computer.id, $event)"> </ngbd-modal-delete>
+            </div>
+        </div>
+    </h1>
+
+    <table id="details" class="table">
+        <thead>
+          <tr>
+              <th style="white-space:pre-wrap; word-wrap:break-word; font-weight: normal;">{{ computer.description }}</th>
+          </tr>
+        </thead>
+    </table>
+    <br><br>
+
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Selection</th>
+            <th></th>
+          </tr>
+
+          <tr *ngIf="cpu.id != null">
+            <th style="width: 10%; vertical-align: middle;">cpu</th>
+            <th style="font-weight: normal; vertical-align: middle;" >
+              <a  routerLink="/part/{{ cpu.id }}">
+                <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                     src="{{ cpu.image_url }}" alt="Trulli" width="80" height="60">
+                {{ cpu.model }}
+              </a>
+            </th>
+          </tr>
+
+          <tr *ngIf="motherboard.id != null">
+              <th style="width: 10%; vertical-align: middle;">motherboard</th>
+              <th style="font-weight: normal; vertical-align: middle;">
+                <a  routerLink="/part/{{ motherboard.id }}">
+                  <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                       src="{{ motherboard.image_url }}" alt="Trulli" width="80" height="60" >
+                  {{ motherboard.model }}
+                </a>
+              </th>
+          </tr>
+
+          <tr *ngIf="ram.id != null">
+              <th style="width: 10%; vertical-align: middle;">ram</th>
+              <th style="font-weight: normal; vertical-align: middle;">
+                <a  routerLink="/part/{{ ram.id }}">
+                  <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                       src="{{ ram.image_url }}" alt="Trulli" width="80" height="60">
+                  {{ ram.model }}
+                </a>
+              </th>
+          </tr>
+
+          <tr *ngIf="case.id != null">
+              <th style="width: 10%; vertical-align: middle;">case</th>
+              <th style="font-weight: normal; vertical-align: middle;">
+                <a  routerLink="/part/{{ case.id }}">
+                  <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                       src="{{ case.image_url }}" alt="Trulli" width="80" height="60">
+                  {{ case.model }}
+                </a>
+              </th>
+            </tr>
+
+            <tr *ngIf="psu.id != null">
+                <th style="width: 10%; vertical-align: middle;">psu</th>
+
+                <th style="font-weight: normal; vertical-align: middle;">
+                  <a  routerLink="/part/{{ psu.id }}">
+                    <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                         src="{{ psu.image_url }}" alt="Trulli" width="80" height="60">
+                    {{ psu.model }}
+                  </a>
+                </th>
+            </tr>
+
+          </thead>
+        </table>
+
+        <br><br>
+
+
+  <app-comments></app-comments>
+</div>
+
+
+<ng-template  #loading>
+  <div class="center spinner-border text-primary" style="width: 130px; height: 130px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>

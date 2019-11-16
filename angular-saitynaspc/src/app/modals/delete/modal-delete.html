@@ -1,0 +1,11 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Are you sure you want to delete {{ itemToDelete }} </h4>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-warning round" (click)="modal.close('ok')">Ok</button>
+      <button type="button" class="btn btn-primary round" (click)="modal.close('cancel')">Cancel</button>
+    </div>
+  </ng-template>
+
+  <a (click)="open(content)">Delete</a>

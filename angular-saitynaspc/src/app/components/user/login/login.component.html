@@ -1,0 +1,26 @@
+<div class="container content" *ngIf="userName;else not_logedin">
+
+  <h1>you need to log out first</h1>
+
+</div>
+
+<ng-template #not_logedin>
+  <div class="login-form container content">
+      <form ngNativeValidate class="form" (ngSubmit)="onSubmit()">
+          <h2 class="text-center">Log in</h2>
+          <div *ngIf="error" class="text-center" style="color: red; margin-bottom: 15px;">
+            {{error}}
+          </div>
+          <div class="form-group">
+              <input type="email" class="form-control round" name="email" [(ngModel)]="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+              <input type="password" class="form-control round" name="password" [(ngModel)]="password" placeholder="Password" required="required">
+          </div>
+          <div class="form-group">
+              <input type="submit" value="Login" class="btn btn-primary btn-block" style="font-size: 15px; font-weight: bold;">
+          </div>
+      </form>
+      <p class="text-center"><a href="/register">Create an Account</a></p>
+  </div>
+</ng-template>

@@ -1,0 +1,199 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~font-awesome/css/font-awesome.css';
+
+@font-face {
+  font-family: DancingScript-Bold;
+  src: url(assets/DancingScript-Bold.ttf) format("opentype");
+}
+
+.title {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'DancingScript-Bold';
+  font-size: x-large;
+}
+
+.round {
+  border-radius: 7px;
+}
+
+.noOutline {
+  outline: 0;
+}
+
+.sticky {
+  background: #fff;
+  box-shadow: 0 3px 12px 0 rgba(0,0,0,.08);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.content{
+  margin-top: 65px;
+  margin: 0 auto;
+  padding-top: 64px;
+  /* max-width: 1280px; */
+
+  break-after: 768px;
+
+  width: 94%;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+
+.center {
+  position: fixed;
+  top:  50%;
+  left: 50%;
+  margin-top: -65px;
+  margin-left: -65px;
+}
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+.hovereffect {
+  background-size: cover;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  background-color: black;
+}
+.hovereffect .overlay {
+  width: 100%;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: auto;
+  bottom: 0;
+  padding: 1em;
+  height: 4.75em;
+  background: #79FAC4;
+  color: #3c4a50;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(0,100%,0);
+  transform: translate3d(0,100%,0);
+  visibility: hidden;
+  background-color: black;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+}
+
+.hovereffect:hover img {
+  -webkit-transform: translate3d(0,-10%,0);
+  transform: translate3d(0,-10%,0);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  padding: 13px;
+  float: left;
+  margin: 0px;
+  display: inline-block;
+}
+
+.hovereffect h2
+{
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(0,200%,0);
+  transform: translate3d(0,200%,0);
+  visibility: visible;
+}
+
+.hovereffect:hover .overlay,
+.hovereffect:hover h2
+{
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect:hover h2 {
+  -webkit-transition-delay: 0.05s;
+  transition-delay: 0.05s;
+}
+
+.comments {
+  color: #ada9a9;
+}
+
+.comments:hover {
+  color: #3c4a50;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.login-form {
+  width: 340px;
+    margin: 50px auto;
+}
+  .login-form form {
+    margin-bottom: 15px;
+      background: #f7f7f7;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+      padding: 30px;
+  }
+  .login-form h2 {
+      margin: 0 0 15px;
+  }
+  .form-control, .btn {
+      min-height: 38px;
+      border-radius: 7px;
+  }

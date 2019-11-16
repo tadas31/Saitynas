@@ -1,0 +1,26 @@
+<div class="animate-bottom container content" *ngIf="computers; else loading">
+
+  <div class="row"    >
+      <div  class="col-lg-4 col-md-12 mb-4" *ngFor="let computer of computers">
+        <a href="/computer/{{computer.id}}">
+          <div class="hovereffect round">
+            <img src="{{ computer.image_url }}" class="img-responsive img-fluid mb-4 border border-secondary round " onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';" alt="">
+            <div class="overlay">
+                <h2>{{ (computer.name.length > 22)? (computer.name | slice:0:22)+'...':(computer.name) }}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+  </div>
+
+</div>
+
+<ng-template  #loading>
+  <div class="center spinner-border text-primary" style="width: 130px; height: 130px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>
+
+
+
+

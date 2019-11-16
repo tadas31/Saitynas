@@ -1,0 +1,40 @@
+<div class="content container" *ngIf="isAdmin;else not_admin">
+  <form ngNativeValidate (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="type">Part type</label>
+      <select class="browser-default custom-select round" id="type" name="type" [(ngModel)]="part.type" required>
+        <option disabled selected value>Select type</option>
+        <option value="cpu">CPU</option>
+        <option value="motherboard">Motherboard</option>
+        <option value="psu">PSU</option>
+        <option value="ram">RAM</option>
+        <option value="case">Case</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="model">Part model</label>
+      <input class="form-control round" id="model" name="model" [(ngModel)]="part.model" placeholder="model" required>
+    </div>
+
+    <div class="form-group">
+      <label for="specs">Part specs</label>
+      <textarea class="form-control round" id="specs" rows="10" name="specs" [(ngModel)]="part.specs" placeholder="specs" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image_url">Image link</label>
+      <input class="form-control round" id="image_url" name="image_url" [(ngModel)]="part.image_url" placeholder="image link">
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary round">
+  </form>
+</div>
+
+
+<ng-template  #not_admin>
+  <div class="container content">
+      <h1>you need to be loged in as addmin</h1>
+  </div>
+</ng-template>

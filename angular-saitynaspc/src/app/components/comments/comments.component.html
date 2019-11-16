@@ -1,0 +1,41 @@
+<font size="6" >Comments</font>
+<hr> <br>
+
+<div *ngIf="userId">
+  <form #myForm="ngForm" ngNativeValidate class="form" (ngSubmit)="onSubmit(); myForm.reset()">
+      <div class="form-group">
+          <textarea class="form-control round" id="comment" rows="2" name="comment" [(ngModel)]="comment.comment" placeholder="comment" required></textarea>
+      </div>
+    <input type="submit" value="Post" class="btn btn-primary round"  style="width: 100px">
+  </form>
+</div>
+<br>
+
+<div *ngFor="let comment of comments" style="margin-bottom: 15px;">
+  <div *ngIf="isEditing && editingId == comment.id;else not_editing">
+    <b>{{ comment.user_name }}</b><br>
+    <form ngNativeValidate class="form" (ngSubmit)="onEdit()">
+        <div class="form-group">
+            <textarea class="form-control round" id="comment" rows="2" name="comment" [(ngModel)]="editedComment" value="{{ comment.comment }}" placeholder="comment" required></textarea>
+        </div>
+      <input type="submit" value="Submit" class="btn btn-primary round"> &nbsp;
+      <a (click)="isEditing = !isEditing; editingId = -1" class="btn btn-warning round" style="color: white;">Cancel</a>
+    </form>
+  </div>
+
+  <ng-template #not_editing>
+    <b>{{ comment.user_name }}</b>
+
+    <div style="white-space:pre-wrap; word-wrap:break-word; margin-bottom: 8px;">
+        {{ comment.comment }}
+    </div>
+    <div *ngIf="userId == comment.user_id || isAdmin == true">
+      <div class="comments" style="display:inline;">
+        <a *ngIf="userId == comment.user_id" (click)="isEditing = !isEditing; editingId = comment.id; editedComment = comment.comment">Edit</a>
+      </div>
+      |
+      <ngbd-modal-delete *ngIf="userId == comment.user_id || isAdmin == true" class="comments"  itemToDelete="comment" (deleteResponce)="onDelete(comment.id, $event)" ></ngbd-modal-delete>
+    </div>
+  </ng-template>
+  <hr>
+</div>

@@ -1,0 +1,145 @@
+<div class="animate-bottom container content" *ngIf="psu.type == 'psu';else loading">
+  <div *ngIf="userName;else not_logedin">
+      <form ngNativeValidate class="form" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="name">Computer name</label>
+          <input class="form-control round" id="name" name="name" [(ngModel)]="name" placeholder="Computer name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control round" id="description" rows="3" name="description" [(ngModel)]="description" placeholder="Description"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image_url">Image link</label>
+          <input class="form-control round" id="image_url" name="image_url" [(ngModel)]="image_url" placeholder="Image link">
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Selection</th>
+              <th></th>
+            </tr>
+
+            <tr>
+              <th style="width: 10%; vertical-align: middle;">cpu</th>
+
+              <th style="font-weight: normal; vertical-align: middle;" >
+                <a *ngIf="cpu.id != null;else no_cpu" routerLink="/part/{{ cpu.id }}">
+                  <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                       src="{{ cpu.image_url }}" alt="Trulli" width="80" height="60">
+                  {{ cpu.model }}
+                </a>
+                <ng-template #no_cpu>
+                    <a routerLink="/parts/cpu" class="btn btn-primary round">Chose a cpu</a>
+                </ng-template>
+              </th>
+
+              <th style="font-weight: normal;  vertical-align: middle;" class="pickedPartsCenter">
+                  <a *ngIf="cpu.id != null" style="color: white;"  (click)="removePart(cpu.type)" class="btn btn-warning round">Remove</a>
+              </th>
+            </tr>
+
+            <tr>
+                <th style="width: 10%; vertical-align: middle;">motherboard</th>
+
+                <th style="font-weight: normal; vertical-align: middle;">
+                  <a *ngIf="motherboard.id != null;else no_motherboard" routerLink="/part/{{ motherboard.id }}">
+                    <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                         src="{{ motherboard.image_url }}" alt="Trulli" width="80" height="60">
+                    {{ motherboard.model }}
+                  </a>
+                  <ng-template #no_motherboard>
+                      <a routerLink="/parts/motherboard" class="btn btn-primary round">Chose a motherboard</a>
+                  </ng-template>
+                </th>
+
+                <th style="font-weight: normal;  vertical-align: middle;" class="pickedPartsCenter">
+                    <a *ngIf="motherboard.id != null" style="color: white;"  (click)="removePart(motherboard.type)" class="btn btn-warning round">Remove</a>
+                </th>
+            </tr>
+
+            <tr>
+                <th style="width: 10%; vertical-align: middle;">ram</th>
+
+                <th style="font-weight: normal; vertical-align: middle;">
+                  <a *ngIf="ram.id != null;else no_ram" routerLink="/part/{{ ram.id }}">
+                    <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                         src="{{ ram.image_url }}" alt="Trulli" width="80" height="60">
+                    {{ ram.model }}
+                  </a>
+                  <ng-template #no_ram>
+                      <a routerLink="/parts/ram" class="btn btn-primary round">Chose a ram</a>
+                  </ng-template>
+                </th>
+
+                <th style="font-weight: normal;  vertical-align: middle;" class="pickedPartsCenter">
+                    <a *ngIf="ram.id != null" style="color: white;"  (click)="removePart(ram.type)" class="btn btn-warning round">Remove</a>
+                </th>
+            </tr>
+
+            <tr>
+                <th style="width: 10%; vertical-align: middle;">case</th>
+
+                <th style="font-weight: normal; vertical-align: middle;">
+                  <a *ngIf="case.id != null;else no_case" routerLink="/part/{{ case.id }}">
+                    <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                         src="{{ case.image_url }}" alt="Trulli" width="80" height="60">
+                    {{ case.model }}
+                  </a>
+                  <ng-template #no_case>
+                      <a routerLink="/parts/case" class="btn btn-primary round">Chose a case</a>
+                  </ng-template>
+                </th>
+
+                <th style="font-weight: normal;  vertical-align: middle;" class="pickedPartsCenter">
+                    <a *ngIf="case.id != null" style="color: white;"  (click)="removePart(case.type)" class="btn btn-warning round">Remove</a>
+                </th>
+              </tr>
+
+              <tr>
+                  <th style="width: 10%; vertical-align: middle;">psu</th>
+
+                  <th style="font-weight: normal; vertical-align: middle;">
+                    <a *ngIf="psu.id != null;else no_psu" routerLink="/part/{{ psu.id }}">
+                      <img onerror="this.onerror=null;this.src='https://sciences.ucf.edu/psychology/wp-content/uploads/sites/63/2019/09/No-Image-Available.png';"
+                           src="{{ psu.image_url }}" alt="Trulli" width="80" height="60">
+                      {{ psu.model }}
+                    </a>
+                    <ng-template #no_psu>
+                        <a routerLink="/parts/psu" class="btn btn-primary round">Chose a psu</a>
+                    </ng-template>
+                  </th>
+
+                  <th style="font-weight: normal;  vertical-align: middle;" class="pickedPartsCenter">
+                      <a *ngIf="psu.id != null" style="color: white;" (click)="removePart(psu.type)" class="btn btn-warning round">Remove</a>
+                  </th>
+              </tr>
+
+            </thead>
+          </table>
+
+          <input type="submit" value="Submit" class="btn btn-primary round">
+        </form>
+  </div>
+
+  <ng-template #not_logedin>
+
+  <h1>you need to be loged in</h1>
+
+  </ng-template>
+
+</div>
+
+<ng-template  #loading>
+  <div class="center spinner-border text-primary" style="width: 130px; height: 130px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</ng-template>
+
+
+
