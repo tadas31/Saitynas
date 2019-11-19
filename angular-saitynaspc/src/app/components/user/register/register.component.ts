@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   registrationData: RegistrationData[] = [];
   token: Token[] = [];
 
+  error: String;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -34,23 +36,28 @@ export class RegisterComponent implements OnInit {
       password: this.password
     }
 
-    this.userService.register(data).subscribe(registrationData => {
-      this.registrationData.push(registrationData);
+    this.userService.register(data).subscribe(
+        registrationData => {
+        this.registrationData.push(registrationData);
 
-      this.userService.login(this.email, this.password).subscribe(token => {
-        this.token.push(token);
-        localStorage.setItem('Token', this.token[0].token_type + " " + this.token[0].access_token);
-        this.userService.userData(this.token[0].access_token).subscribe(user =>{
-          localStorage.setItem('UserId', user.id);
-          localStorage.setItem('UserName', user.name);
-          localStorage.setItem('Email', user.email);
-          localStorage.setItem('IsAdmin', JSON.stringify(user.is_admin));
+        this.userService.login(this.email, this.password).subscribe(token => {
+          this.token.push(token);
+          localStorage.setItem('Token', this.token[0].token_type + " " + this.token[0].access_token);
+          this.userService.userData(this.token[0].access_token).subscribe(user =>{
+            localStorage.setItem('UserId', user.id);
+            localStorage.setItem('UserName', user.name);
+            localStorage.setItem('Email', user.email);
+            localStorage.setItem('IsAdmin', JSON.stringify(user.is_admin));
 
-          window.location.replace('');
+            window.location.replace('');
+          });
         });
-      });
 
-    });
+      },
+      error => {
+        this.error = "Email already exists";
+      }
+    );
 
   }
 
